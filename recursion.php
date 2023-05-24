@@ -17,17 +17,17 @@ class Factorial
 {
     protected int $total;
 
-    public function __construct($num)
+    public function __construct(protected $num)
     {
         if (!is_numeric($num)) {
             throw new InvalidArgumentException('I am Groot!!');
         }
-        $this->result($num);
+        $this->result($this->num);
     }
 
     public function __toString(): string
     {
-        return (string)$this->total;
+        return "The factorial of $this->num is $this->total";
     }
 
     public function result(int $num): int
@@ -44,5 +44,4 @@ class Factorial
 $mixed_type = ["5", 10, "groot"];
 $input = array_rand($mixed_type, 1);
 
-$factorial = new Factorial($mixed_type[$input]);
-echo "The factorial of $mixed_type[$input] is $factorial";
+print new Factorial($mixed_type[$input]);
